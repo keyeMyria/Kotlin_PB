@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/map_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <include
+                android:id="@+id/tb_map"
+                layout="@layout/tool_bar_map"/>
+
+        </FrameLayout>
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/map_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="@color/white"
+            app:itemTextColor="@color/white"
+            app:menu="@menu/map_bottom_navigation_menu"/>
+
+    </RelativeLayout>
+
+
+    <include
+        android:id="@+id/map_bottom_sheet"
+        layout="@layout/bottom_sheet_map"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_map_bottom_sheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add_to_queue_white_24dp"
+        android:visibility="gone"
+        app:fabSize="normal"
+        app:layout_anchor="@id/map_bottom_sheet"
+        app:layout_anchorGravity="top|right"/>
+
+</android.support.design.widget.CoordinatorLayout>
+

@@ -1,0 +1,144 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.apollographql.android'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+def versionMajor = 5
+def versionMinor = 12
+def versionPatch = 0
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.megoapp"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode versionMajor * 200000 + versionMinor * 100 + versionPatch
+        versionName "0.0.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+        release {
+            storeFile file("release.keystore")
+            storePassword "e47he4574e57hgrtGD"
+            keyAlias "release"
+            keyPassword "es456he4fertesHGDCFHmaui"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    appIcon: "@drawable/ic_launcher"
+            ]
+            signingConfig android.signingConfigs.debug
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            applicationIdSuffix "debug"
+            versionNameSuffix "-DEBUG"
+            manifestPlaceholders = [
+                    appIcon: "@drawable/ic_launcher_red"
+            ]
+            signingConfig android.signingConfigs.debug
+        }
+
+        dev {
+            minifyEnabled false
+            debuggable true
+            applicationIdSuffix "dev"
+            versionNameSuffix "-DEV"
+            manifestPlaceholders = [
+                    appIcon: "@drawable/ic_launcher_blue"
+            ]
+            signingConfig android.signingConfigs.debug
+            ext.betaDistributionGroupAliases = "mego-product"
+            ext.betaDistributionReleaseNotesFilePath = 'dev-build-notes.txt'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:2.0.1'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android Support libs
+    [
+            'design',
+            'support-v4',
+            'appcompat-v7',
+            'recyclerview-v7',
+            'cardview-v7',
+            'support-annotations'
+    ].each {
+        compile "com.android.support:${it}:${supportVersion}"
+    }
+
+    // Google Play Service
+    [
+            'base',
+            'location',
+            'maps',
+            'identity',
+            'places'
+    ].each {
+        compile "com.google.android.gms:play-services-${it}:${gmsVersion}"
+    }
+
+    compile 'com.android.support:design:25.3.1'
+
+    // 3rd part libs
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.patloew.rxlocation:rxlocation:1.0.3'
+    compile "org.greenrobot:eventbus:${eventBusVersion}"
+    compile "com.google.dagger:dagger:${daggerVersion}"
+    compile "com.jakewharton:butterknife:${butterknifeVersion}"
+    compile "com.squareup.picasso:picasso:${picassoVersion}"
+    compile 'joda-time:joda-time:2.8.1'
+    compile('com.afollestad.material-dialogs:core:0.9.0.2@aar') {
+        transitive = false
+    }
+    compile 'com.apollographql.apollo:apollo-rx2-support:0.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+    // Fabric
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+        transitive = true;
+    }
+
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+
+    // Unit Tests
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile 'org.assertj:assertj-core:3.5.2'
+
+    // UI Tests
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+}

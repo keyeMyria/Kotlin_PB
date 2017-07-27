@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MeGo</string>
+    <string name="close_drawer">close drawer</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="ok">OK</string>
+    <string name="dialog_filter_title">Filter</string>
+    <string name="dialog_provider_title">Provider</string>
+</resources>

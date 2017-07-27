@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="95dp"
+    app:elevation="4dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+    <ImageView
+        android:id="@+id/bs_car_photo"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:src="@drawable/ic_car2go_car"/>
+
+    <TextView
+        android:id="@+id/bs_car_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="8dp"
+        android:text="B-G04245"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/bs_street"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/bs_car_number"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="4dp"
+        android:text="Grillparzer Str. 6"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"/>
+
+</RelativeLayout>
+
+
