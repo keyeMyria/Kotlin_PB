@@ -1,4 +1,4 @@
-# MeGo Android Client
+# PB Kotlin
 <!-- toc -->
 
 * [Introduction](#introduction)
@@ -10,7 +10,7 @@
 
 ## Introduction
 
-The Car sharing Android client code base
+A test app for learning Kotlin
 
 ## Structure
 
